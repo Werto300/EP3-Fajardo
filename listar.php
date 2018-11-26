@@ -27,16 +27,12 @@
 <?php //session_start(); 
 require "cfg/conexion.php";
 
-    $servidor = "localhost";
-    $usuario = "root";
-    $db = "examen-fajardo";
-
-    $conexion = mysqli_connect($servidor, $usuario);
+    $con=mysqli_connect("localhost","root","","examen-fajardo");
 
 
    $query="select * from SALA_REMOTA";
 
-   $resultado=mysqli_query($conexion,$query);
+   $resultado=mysqli_query($con,$query);
    echo "<div class='container'>";
    echo "<table class='table table-striped'>";
    echo "<th> Nombre de Sala</th> <th>Respondable de Sala</th> <th>Telefono</th> <th>E-Mail</th> <th>IP</th> <th>ISDN</th> <th>Editar</th> <th>Eliminar</th>";

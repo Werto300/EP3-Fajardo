@@ -2,6 +2,8 @@
 //datos para establecer la conexion con la base de mysql.
 require "cfg/conexion.php";
 
+$con=mysqli_connect("127.0.0.1","root"," ","examen-fajardo");
+
 // verificamos si se han enviado ya las variables necesarias.
 if (isset($_GET["nom"])) {
     $name = $_GET["nom"];
@@ -19,10 +21,10 @@ if (isset($_GET["nom"])) {
         formRegistro();
     }else{
 
-                $query = 'INSERT INTO SALA_REMOTA (nombre, telefono, email_responsable, ip, issdn) VALUES ("'.$name.'","'.$responsable.'","'.$telefono.'","'.$email.'","'.$ip.'","'.$isdn.'")';
-                mysql_query($query) or die(mysql_error());
+                $query = 'INSERT INTO sala_remota (nombre, responsable, telefono, email_responsable, ip, isdn) VALUES ("'.$name.'","'.$responsable.'","'.$telefono.'","'.$email.'","'.$ip.'","'.$isdn.'")';
+                mysqli_query($con, $query);
                 echo 'La sala '.$name.' ha sido registrada de manera satisfactoria.<br/>';
-   header('Location: index.php');
+   header('Location: listar.php');
             }
         }
 
