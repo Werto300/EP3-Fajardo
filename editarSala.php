@@ -1,23 +1,23 @@
 <?php session_start(); 
 //datos para establecer la conexion con la base de mysql.
 require "cfg/conexion.php";
-
+$con=mysqli_connect("127.0.0.1","root","","examen-fajardo");
 // verificamos si se han enviado ya las variables necesarias.
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
 
 
     $query="select * from SALA_REMOTA WHERE id_sala_remota=$id";
-    mysql_query($query) or die(mysql_error());
+    mysqli_query($con, $query);
     
-     $resultado=mysql_query($query);
-     while ($dato=mysql_fetch_array($resultado)) {
+     $resultado=mysqli_query($con, $query);
+     while ($dato=mysqli_fetch_array($resultado)) {
        $nom = $dato['nombre'];
        $res = $dato['responsable'];
        $tel = $dato['telefono'];
        $mail = $dato["email_responsable"];
        $ip = $dato["ip"];
-       $isdn = $dato["isdn"];
+       $servicios = $dato["servicios"];
        $id = $dato["id_sala_remota"];
     
    }
@@ -43,9 +43,9 @@ if (isset($_GET["id"])) {
     <!-- MetisMenu CSS -->
     <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
+    <!-- Custom CSS
     <link href="css/sb-admin-2.css" rel="stylesheet">
-
+    -->
     <!-- Custom Fonts -->
     <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -83,24 +83,28 @@ if (isset($_GET["id"])) {
            placeholder="Introduce IP"value= "<?=$ip;?>">
   </div>
     <div class="form-group">
-    <label for="ejemplo_email_1">ISDN</label>
-    <input name= "isdn" type="text" class="form-control" id="juan Perez"
-           placeholder="Introduce ISDN" value= "<?=$isdn;?>">
+    <label for="ejemplo_email_1">Servicios</label>
+    <input name= "servicios" type="text" class="form-control" id="juan Perez"
+           placeholder="Introduce servicios" value= "<?=$servicios;?>">
   </div>
   <button type="submit" class="btn btn-success">Enviar</button>
 </form>
 </div>
 
-    <!-- jQuery -->
+    <!-- jQuery
     <script src="js/jquery.js"></script>
+    -->
 
-    <!-- Bootstrap Core JavaScript -->
+    <!-- Bootstrap Core JavaScript
     <script src="js/bootstrap.min.js"></script>
+    -->
 
-    <!-- Metis Menu Plugin JavaScript -->
+    <!-- Metis Menu Plugin JavaScript
     <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+    -->
 
-    <!-- Custom Theme JavaScript -->
+    <!-- Custom Theme JavaScript
     <script src="js/sb-admin-2.js"></script>
+    -->
 
 </body>
