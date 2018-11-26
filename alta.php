@@ -2,7 +2,7 @@
 //datos para establecer la conexion con la base de mysql.
 require "cfg/conexion.php";
 
-$con=mysqli_connect("127.0.0.1","root"," ","examen-fajardo");
+$con=mysqli_connect("127.0.0.1","root","","examen-fajardo");
 
 // verificamos si se han enviado ya las variables necesarias.
 if (isset($_GET["nom"])) {
